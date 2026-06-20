@@ -1,0 +1,28 @@
+<section class="hero-list">
+    <header>
+        <h1>Superhéroes</h1>
+        
+    </header>
+
+
+<button (click)="goToCreate()">
+  Crear un superhéroe
+</button>
+
+<hr />
+
+@if (heroes().length > 0) {
+    <div class="hero-grid">
+    @for (hero of heroes(); track hero.id) {
+      <app-hero-card
+        [hero]="hero"
+        (delete)="deleteHero(hero.id)"
+        (edit)="goToEdit(hero.id)"
+        ></app-hero-card>
+    }
+    </div>
+} @else {
+  <p>No hay superhéroes disponibles</p>
+}
+
+</section>

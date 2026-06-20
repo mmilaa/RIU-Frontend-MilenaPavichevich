@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  background-color: var(--mat-sys-surface-container);
+}
+
+.hero-list {
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  grid-auto-rows: 420px;
+  gap: 1rem;
+}

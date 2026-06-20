@@ -1,0 +1,58 @@
+<mat-card class="hero-card">
+  <mat-card-header>
+    <mat-card-title>{{ hero().name }}</mat-card-title>
+    <mat-card-subtitle>{{ hero().alias }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="hero-content">
+    <div class="hero-image-container">
+      @if (hero().imageUrl) {
+        <img
+          mat-card-image
+          [src]="hero().imageUrl"
+          [alt]="'Imagen de ' + hero().name"
+          class="hero-image"
+        />
+      } @else {
+        <div aria-hidden="true">
+          <mat-icon>person</mat-icon>
+        </div>
+      }
+    </div>
+  
+    <div>
+      <mat-card-content>
+        @if (hero().description) {
+          <p>{{ hero().description }}</p>
+        }
+
+        <mat-chip-set aria-label="Poderes de {{ hero().name }}">
+          @for (power of hero().powers; track power) {
+            <mat-chip>{{ power }}</mat-chip>
+          }
+        </mat-chip-set>
+      </mat-card-content>
+    </div>
+  </div>
+
+  <mat-card-actions align="end">
+    <button
+      mat-button
+      color="primary"
+      (click)="onEdit()"
+      aria-label="Editar héroe"
+    >
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+    <button
+      mat-button
+      color="warn"
+      (click)="onDelete()"
+      aria-label="Eliminar héroe"
+    >
+      <mat-icon>delete</mat-icon>
+      Borrar
+    </button>
+  </mat-card-actions>
+</mat-card>
