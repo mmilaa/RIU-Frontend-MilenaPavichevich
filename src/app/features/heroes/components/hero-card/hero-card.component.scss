@@ -1,17 +1,27 @@
-.hero-image{
-    width: 200px;
-    height: 260px;
-    object-fit: cover;
+.hero-card {
+	width: 100%;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+	&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+	}
 }
 
-.hero-image-container{
-    border-radius: 8px;
+.hero-image {
+	width: 180px;
+	height: 260px;
+	object-fit: cover;
+	display: block;
+}
+
+.hero-image-container {
+	flex-shrink: 0;
+	overflow: hidden;
+	border-radius: 8px;
 }
 
 .hero-content{
-    display: flex;;
-}
-
-.hero-card {
-  width: 100%;
+	display: flex;
+	padding: 1rem 1rem 0;
 }

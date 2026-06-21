@@ -22,8 +22,11 @@
         }
 
         <mat-chip-set aria-label="Poderes de {{ hero().name }}">
-          @for (power of hero().powers; track power) {
+          @for (power of visiblePowers(); track power) {
             <mat-chip>{{ power }}</mat-chip>
+          }
+          @if (remainingPowers() > 0) {
+            <mat-chip [matTooltip]="hiddenPowersText()">+{{ remainingPowers() }}</mat-chip>
           }
         </mat-chip-set>
       </mat-card-content>
