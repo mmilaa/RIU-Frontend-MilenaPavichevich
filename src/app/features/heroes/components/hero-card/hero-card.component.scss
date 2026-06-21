@@ -1,10 +1,11 @@
 .hero-card {
 	width: 100%;
+	background-color: var(--mat-sys-surface-container-low);
 	transition: transform 0.2s ease, box-shadow 0.2s ease;
 
 	&:hover {
 			transform: translateY(-4px);
-			box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+			box-shadow: var(--mat-sys-level3);
 	}
 }
 

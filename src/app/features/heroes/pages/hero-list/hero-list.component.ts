@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-list',
@@ -16,6 +17,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 export class HeroListComponent {
 
   private readonly heroService = inject(HeroService);
+  private readonly router = inject(Router);
 
   searchTerm = signal('');
   pageSize = signal(5);
@@ -38,12 +40,12 @@ export class HeroListComponent {
     console.log('borrar', id);
   }
 
-  goToCreate() {
-    console.log('crear');
+  goToCreate(): void {
+    this.router.navigate(['/heroes/new']);
   }
 
-  goToEdit(id: number) {
-    console.log('editar', id);
+  goToEdit(id: number): void {
+    this.router.navigate(['/heroes/edit', id]);
   }
 
   onSearch(event: Event): void {

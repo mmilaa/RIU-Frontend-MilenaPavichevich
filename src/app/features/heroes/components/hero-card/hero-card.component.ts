@@ -13,7 +13,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   styleUrl: './hero-card.component.scss',
 })
 export class HeroCardComponent {
-  private readonly maxPowers = 3;
+  private readonly maxPowers = 4;
 
   readonly hero = input.required<SuperHero>();
   readonly fallbackImage = 'assets/images/Unknown_person.jpg';
