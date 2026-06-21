@@ -6,18 +6,13 @@
 
   <div class="hero-content">
     <div class="hero-image-container">
-      @if (hero().imageUrl) {
         <img
           mat-card-image
-          [src]="hero().imageUrl"
+          [src]="hero().imageUrl || fallbackImage"
           [alt]="'Imagen de ' + hero().name"
           class="hero-image"
+          (error)="onImageError($event)"
         />
-      } @else {
-        <div aria-hidden="true">
-          <mat-icon>person</mat-icon>
-        </div>
-      }
     </div>
   
     <div>

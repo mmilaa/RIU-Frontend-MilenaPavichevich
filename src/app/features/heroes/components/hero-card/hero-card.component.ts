@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class HeroCardComponent {
   readonly hero = input.required<SuperHero>();
+  readonly fallbackImage = 'assets/images/Unknown_person.jpg';
 
   readonly edit = output<SuperHero>();
   readonly delete = output<SuperHero>();
@@ -23,5 +24,10 @@ export class HeroCardComponent {
 
   onDelete(): void {
     this.delete.emit(this.hero());
+  }
+  
+  onImageError(event: Event): void {
+    const img = event.target as HTMLImageElement;
+    img.src = this.fallbackImage;
   }
 }
