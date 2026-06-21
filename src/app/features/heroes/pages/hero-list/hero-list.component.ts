@@ -7,6 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -18,6 +20,7 @@ export class HeroListComponent {
 
   private readonly heroService = inject(HeroService);
   private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
 
   searchTerm = signal('');
   pageSize = signal(5);
@@ -36,8 +39,20 @@ export class HeroListComponent {
   });
 
 
-  deleteHero(id: number) {
-    console.log('borrar', id);
+  deleteHero(id: number) : void {
+    const hero = this.heroService.getById(id);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Eliminar superhéroe',
+        message: `¿Estás seguro de que deseas eliminar a ${hero?.name}?`,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.heroService.delete(id);
+      }
+    });
   }
 
   goToCreate(): void {
