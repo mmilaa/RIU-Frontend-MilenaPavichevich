@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { SuperHero } from '../models/super-hero.model';
 import { SUPER_HEROES } from '../data/super-heroes.data';
 
@@ -7,7 +7,13 @@ import { SUPER_HEROES } from '../data/super-heroes.data';
 })
 export class HeroService {
 
-  private heroes = signal<SuperHero[]>(SUPER_HEROES);
+  private readonly storageKey = 'heroes';
+
+  private heroes = signal<SuperHero[]>(this.loadFromStorage());
+
+  constructor() {
+    effect(() => this.saveToStorage(this.heroes()));
+  }
 
   getAll(): SuperHero[] {
     return this.heroes();
@@ -56,4 +62,15 @@ export class HeroService {
       ? Math.max(...list.map(h => h.id)) + 1
       : 1;
   }
+
+  private loadFromStorage(): SuperHero[] {
+    const data = localStorage.getItem(this.storageKey);
+    return data ? JSON.parse(data) : SUPER_HEROES;
+  }
+
+  private saveToStorage(heroes: SuperHero[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(heroes));
+  }
+
+
 }
