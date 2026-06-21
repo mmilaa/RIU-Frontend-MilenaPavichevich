@@ -1,11 +1,15 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { HeroService } from '../../../../core/services/hero.service';
-import { SuperHero } from '../../../../core/models/super-hero.model';
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-hero-list',
-  imports: [HeroCardComponent],
+  imports: [HeroCardComponent, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatPaginatorModule],
   templateUrl: './hero-list.component.html',
   styleUrl: './hero-list.component.scss',
 })
@@ -13,7 +17,22 @@ export class HeroListComponent {
 
   private readonly heroService = inject(HeroService);
 
-  heroes = signal<SuperHero[]>(this.heroService.getAll());
+  searchTerm = signal('');
+  pageSize = signal(5);
+  pageIndex = signal(0);
+
+  filteredHeroes = computed(() => {
+    const term = this.searchTerm();
+    return term
+      ? this.heroService.searchByName(term)
+      : this.heroService.getAll();
+  });
+
+  paginatedHeroes = computed(() => {
+    const start = this.pageIndex() * this.pageSize();
+    return this.filteredHeroes().slice(start, start + this.pageSize());
+  });
+
 
   deleteHero(id: number) {
     console.log('borrar', id);
@@ -25,6 +44,17 @@ export class HeroListComponent {
 
   goToEdit(id: number) {
     console.log('editar', id);
+  }
+
+  onSearch(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
+    this.pageIndex.set(0);
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
   }
 
 }

@@ -1,28 +1,39 @@
 <section class="hero-list">
-    <header>
-        <h1>Superhéroes</h1>
-        
-    </header>
+  <header>
+    <h1>Superhéroes</h1>
+    <div class="search-bar">
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Buscar superhéroe</mat-label>
+        <input matInput (input)="onSearch($event)" placeholder="Ej: man" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
 
-
-<button (click)="goToCreate()">
-  Crear un superhéroe
-</button>
-
-<hr />
-
-@if (heroes().length > 0) {
-    <div class="hero-grid">
-    @for (hero of heroes(); track hero.id) {
-      <app-hero-card
-        [hero]="hero"
-        (delete)="deleteHero(hero.id)"
-        (edit)="goToEdit(hero.id)"
-        ></app-hero-card>
-    }
+      <button mat-fab color="primary" (click)="goToCreate()">
+        <mat-icon>add</mat-icon>
+      </button>
     </div>
-} @else {
-  <p>No hay superhéroes disponibles</p>
-}
+  </header>
 
+  @if (paginatedHeroes().length > 0) {
+      <div class="hero-grid">
+      @for (hero of paginatedHeroes(); track hero.id) {
+        <app-hero-card
+          [hero]="hero"
+          (delete)="deleteHero(hero.id)"
+          (edit)="goToEdit(hero.id)"
+          ></app-hero-card>
+      }
+      </div>
+  } @else {
+    <p>No hay superhéroes disponibles</p>
+  }
+  
+  <mat-paginator
+    [length]="filteredHeroes().length"
+    [pageSize]="pageSize()"
+    [pageIndex]="pageIndex()"
+    [pageSizeOptions]="[5, 10, 15]"
+    [showFirstLastButtons]="true"
+    (page)="onPageChange($event)"
+  ></mat-paginator>
 </section>

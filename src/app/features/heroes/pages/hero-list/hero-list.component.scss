@@ -1,16 +1,29 @@
 :host {
-  display: block;
-  background-color: var(--mat-sys-surface-container);
+	display: block;
+	background-color: var(--mat-sys-surface-container);
+	min-height: 100vh;
 }
 
 .hero-list {
-  padding: 2rem;
-  margin: 0 auto;
+	padding: 2rem;
+	margin: 0 auto;
 }
 
 .hero-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-  grid-auto-rows: 420px;
-  gap: 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.search-bar{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+header {
+	text-align: center;
 }
