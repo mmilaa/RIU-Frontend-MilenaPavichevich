@@ -6,10 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { UppercaseDirective } from '../../../../shared/directives/uppercase.directive';
 
 @Component({
   selector: 'app-hero-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, UppercaseDirective],
   templateUrl: './hero-form.component.html',
   styleUrl: './hero-form.component.scss',
 })
