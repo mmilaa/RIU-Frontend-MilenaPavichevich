@@ -12,10 +12,17 @@ export class HeroService {
   private readonly loadingService = inject(LoadingService);
 
   private heroes = signal<SuperHero[]>(this.loadFromStorage());
-
+  private initialized = false;
+  
   constructor() {
     effect(() => {
       const data = this.heroes();
+
+      if (!this.initialized) {
+        this.initialized = true;
+        return;
+      }
+
       this.loadingService.show();
       setTimeout(() => {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
