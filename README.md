@@ -13,7 +13,7 @@ Aplicación SPA para el mantenimiento de superhéroes.
 Clonar el repositorio e instalar las dependencias:
 
 ```bash
-git clone https://github.com/tu-usuario/RIU-Frontend-MilenaPavichevich.git
+git clone https://github.com/mmilaa/RIU-Frontend-MilenaPavichevich.git
 cd RIU-Frontend-MilenaPavichevich
 npm install
 ```

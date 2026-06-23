@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "docker": "docker build --tag riu-frontend-milenapavichevich . && docker compose up --build"
+    "docker": "docker compose up --build"
   },
   "prettier": {
     "printWidth": 100,
