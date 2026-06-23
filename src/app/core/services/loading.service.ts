@@ -5,14 +5,14 @@ import { Injectable, signal } from '@angular/core';
 })
 export class LoadingService {
 
-  private readonly _loading = signal(false);
-  readonly loading = this._loading.asReadonly();
+  private readonly loadingSignal = signal(false);
+  readonly loading = this.loadingSignal.asReadonly();
 
   show(): void {
-    this._loading.set(true);
+    this.loadingSignal.set(true);
   }
 
   hide(): void {
-    this._loading.set(false);
+    this.loadingSignal.set(false);
   }
 }

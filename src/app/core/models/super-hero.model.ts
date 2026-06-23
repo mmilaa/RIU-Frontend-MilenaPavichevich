@@ -1,8 +1,8 @@
-export interface SuperHero {
-  id: number;
-  name: string;
-  alias: string;
-  powers: string[];
-  description: string;
-  imageUrl: string;
+export  interface SuperHero {
+  readonly id: number;
+  readonly name: string;
+  readonly alias: string;
+  readonly powers: string[];
+  readonly description: string;
+  readonly imageUrl: string;
 }
