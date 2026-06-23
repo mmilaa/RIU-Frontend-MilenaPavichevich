@@ -19,8 +19,8 @@
       @for (hero of paginatedHeroes(); track hero.id) {
         <app-hero-card
           [hero]="hero"
-          (delete)="deleteHero(hero.id)"
-          (edit)="goToEdit(hero.id)"
+          (delete)="deleteHero($event)"
+          (edit)="goToEdit($event)"
           ></app-hero-card>
       }
       </div>

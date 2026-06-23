@@ -69,7 +69,7 @@ describe('HeroCardComponent', () => {
 
     component.onEdit();
 
-    expect(component.edit.emit).toHaveBeenCalledWith(mockHero);
+    expect(component.edit.emit).toHaveBeenCalledWith(mockHero.id);
   });
 
   it('should emit hero when delete is clicked', () => {
@@ -77,7 +77,7 @@ describe('HeroCardComponent', () => {
 
     component.onDelete();
 
-    expect(component.delete.emit).toHaveBeenCalledWith(mockHero);
+    expect(component.delete.emit).toHaveBeenCalledWith(mockHero.id);
   });
 
 

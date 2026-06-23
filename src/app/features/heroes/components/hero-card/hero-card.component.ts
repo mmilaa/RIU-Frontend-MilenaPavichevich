@@ -22,15 +22,15 @@ export class HeroCardComponent {
   readonly remainingPowers = computed(() => Math.max(0, this.hero().powers.length - this.maxPowers));
   readonly hiddenPowersText = computed(() => this.hero().powers.slice(this.maxPowers).join(', '));
 
-  readonly edit = output<SuperHero>();
-  readonly delete = output<SuperHero>();
+  readonly edit = output<number>();
+  readonly delete = output<number>();
 
   onEdit(): void {
-    this.edit.emit(this.hero());
+    this.edit.emit(this.hero().id);
   }
 
   onDelete(): void {
-    this.delete.emit(this.hero());
+    this.delete.emit(this.hero().id);
   }
   
   onImageError(event: Event): void {
