@@ -21,9 +21,11 @@ export class HeroListComponent {
   private readonly heroService = inject(HeroService);
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
+  private readonly pageSizeKey = 'heroesPageSize';
+
 
   searchTerm = signal('');
-  pageSize = signal(5);
+  pageSize = signal(this.loadPageSize());
   pageIndex = signal(0);
 
   filteredHeroes = computed(() => {
@@ -72,6 +74,12 @@ export class HeroListComponent {
   onPageChange(event: PageEvent): void {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
+    localStorage.setItem(this.pageSizeKey, String(event.pageSize));
+  }
+
+  private loadPageSize(): number {
+    const stored = localStorage.getItem(this.pageSizeKey);
+    return stored ? +stored : 5;
   }
 
 }
