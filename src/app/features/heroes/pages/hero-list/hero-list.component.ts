@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { HeroService } from '../../../../core/services/hero.service';
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-hero-list',
@@ -21,6 +22,7 @@ export class HeroListComponent {
   private readonly heroService = inject(HeroService);
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
+  private readonly destroyRef = inject(DestroyRef);
   private readonly pageSizeKey = 'heroesPageSize';
 
 
@@ -50,11 +52,14 @@ export class HeroListComponent {
       },
     });
 
-    dialogRef.afterClosed().subscribe(confirmed => {
-      if (confirmed) {
-        this.heroService.delete(id);
-      }
-    });
+    dialogRef.afterClosed()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef)
+      ).subscribe(confirmed => {
+        if (confirmed) {
+          this.heroService.delete(id);
+        }
+      });
   }
 
   goToCreate(): void {
