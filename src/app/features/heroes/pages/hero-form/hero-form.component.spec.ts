@@ -62,8 +62,8 @@ describe('HeroFormComponent', () => {
   it('should initialize in create mode when there is no id', () => {
     component.ngOnInit();
 
-    expect(component.isEdit).toBeFalse();
-    expect(component.heroId).toBeNull();
+    expect(mockHeroService.getById).not.toHaveBeenCalled();
+    expect(component.heroForm.value.name).toBe('');
   })
 
   it('should load hero data in edit mode', () => {
@@ -72,9 +72,7 @@ describe('HeroFormComponent', () => {
 
     component.ngOnInit();
 
-    expect(component.isEdit).toBeTrue();
-    expect(component.heroId).toBe(1);
-
+    expect(mockHeroService.getById).toHaveBeenCalledWith(1);
     expect(component.heroForm.value.name).toBe(mockHero.name);
     expect(component.heroForm.value.alias).toBe(mockHero.alias);
   });
@@ -94,8 +92,9 @@ describe('HeroFormComponent', () => {
 
   it('should call update on submit when in edit mode', () => {
     
-    component.isEdit = true;
-    component.heroId = 1;
+    mockActivatedRoute.snapshot.paramMap = convertToParamMap({id: '1'});
+    component.ngOnInit();
+    
     component.heroForm.patchValue({
       name: 'Edito heroe',
       alias: 'Editado',

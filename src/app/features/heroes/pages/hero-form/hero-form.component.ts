@@ -21,8 +21,7 @@ export class HeroFormComponent implements OnInit{
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  heroId: number | null = null;
-  isEdit = false;
+  protected heroId: number | null = null;
 
   heroForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -37,7 +36,6 @@ export class HeroFormComponent implements OnInit{
     const id = this.route.snapshot.paramMap.get('id');
     if(id){
       this.heroId = +id;
-      this.isEdit = true;
       const hero = this.heroService.getById(this.heroId);
       if(hero){
         this.heroForm.patchValue({
@@ -63,7 +61,7 @@ export class HeroFormComponent implements OnInit{
       imageUrl: formValue.imageUrl || '',
     };
 
-    if (this.isEdit && this.heroId) {
+    if (this.heroId) {
       this.heroService.update({id: this.heroId, ...heroData});
     } else {
       this.heroService.create(heroData);

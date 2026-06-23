@@ -1,5 +1,5 @@
 <section class="dialog">
-  <h2 id="form-title">{{ isEdit ? 'Editar' : 'Crear' }} superhéroe</h2>
+  <h2 id="form-title">{{ heroId ? 'Editar' : 'Crear' }} superhéroe</h2>
 
   <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
@@ -37,7 +37,7 @@
     <nav class="actions">
       <button mat-button type="button" (click)="goBack()">Cancelar</button>
       <button mat-flat-button color="primary" type="submit" [disabled]="heroForm.invalid">
-        {{ isEdit ? 'Guardar' : 'Crear' }}
+        {{ heroId ? 'Guardar' : 'Crear' }}
       </button>
     </nav>
   </form>
