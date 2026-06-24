@@ -60,14 +60,18 @@ export class HeroService {
   private generateId(): number {
     const list = this.heroes();
 
-    return list.length > 0
-      ? Math.max(...list.map(h => h.id)) + 1
-      : 1;
+    return list.reduce((max, h) => h.id > max ? h.id : max, 0) + 1;
   }
 
   private loadFromStorage(): SuperHero[] {
     const data = localStorage.getItem(this.storageKey);
-    return data ? JSON.parse(data) : SUPER_HEROES;
+    if (!data) return SUPER_HEROES;
+
+    try {
+      return JSON.parse(data);
+    } catch {
+      return SUPER_HEROES;
+    }
   }
 
   private saveToStorage(): void {
