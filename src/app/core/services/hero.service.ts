@@ -1,4 +1,4 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SuperHero } from '../models/super-hero.model';
 import { SUPER_HEROES } from '../data/super-heroes.data';
 import { LoadingService } from './loading.service';
@@ -12,24 +12,6 @@ export class HeroService {
   private readonly loadingService = inject(LoadingService);
 
   private heroes = signal<SuperHero[]>(this.loadFromStorage());
-  private initialized = false;
-  
-  constructor() {
-    effect(() => {
-      const data = this.heroes();
-
-      if (!this.initialized) {
-        this.initialized = true;
-        return;
-      }
-
-      this.loadingService.show();
-      setTimeout(() => {
-        localStorage.setItem(this.storageKey, JSON.stringify(data));
-        this.loadingService.hide();
-      }, 500);
-    });
-  }
 
   getAll(): SuperHero[] {
     return this.heroes();
@@ -57,18 +39,22 @@ export class HeroService {
       ...currentHeroes,
       newHero,
     ]);
+
+    this.saveToStorage();
   }
 
   update(hero: SuperHero): void {
     this.heroes.update(currentHeroes =>
       currentHeroes.map(h => h.id === hero.id ? hero : h)
     );
+    this.saveToStorage();
   }
 
   delete(id: number): void {
     this.heroes.update(currentHeroes =>
       currentHeroes.filter(hero => hero.id !== id)
     );
+    this.saveToStorage();
   }
 
   private generateId(): number {
@@ -82,5 +68,13 @@ export class HeroService {
   private loadFromStorage(): SuperHero[] {
     const data = localStorage.getItem(this.storageKey);
     return data ? JSON.parse(data) : SUPER_HEROES;
+  }
+
+  private saveToStorage(): void {
+    this.loadingService.show();
+    setTimeout(() => {
+      localStorage.setItem(this.storageKey, JSON.stringify(this.heroes()));
+      this.loadingService.hide();
+    }, 500);
   }
 }

@@ -4,11 +4,39 @@ import { HeroService } from './hero.service';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { SuperHero } from '../models/super-hero.model';
 
+const MOCK_HEROES: SuperHero[] = [
+  {
+    id: 1,
+    name: 'Superman',
+    alias: 'Clark Kent',
+    powers: ['Vuelo', 'Super fuerza', 'Visión láser', 'Invulnerabilidad'],
+    description: 'Último hijo de Krypton y protector de la Tierra.',
+    imageUrl: 'https://example.com/superman.jpg',
+  },
+  {
+    id: 2,
+    name: 'Batman',
+    alias: 'Bruce Wayne',
+    powers: ['Inteligencia', 'Artes marciales', 'Tecnología avanzada', 'Sigilo'],
+    description: 'Vigilante de Gotham que lucha contra el crimen sin poderes.',
+    imageUrl: 'https://example.com/batman.jpg',
+  },
+  {
+    id: 3,
+    name: 'Spider-Man',
+    alias: 'Peter Parker',
+    powers: ['Sentido arácnido', 'Agilidad', 'Escalar paredes', 'Fuerza sobrehumana'],
+    description: 'Héroe joven que protege Nueva York con habilidades de araña.',
+    imageUrl: 'https://example.com/spiderman.jpg',
+  },
+];
+
 describe('HeroService', () => {
   let service: HeroService;
 
   beforeEach(() => {
     localStorage.clear();
+    localStorage.setItem('heroes', JSON.stringify(MOCK_HEROES));
     jasmine.clock().install();
 
     TestBed.configureTestingModule({
@@ -29,14 +57,13 @@ describe('HeroService', () => {
 
   it('should return all heroes', () => {
     const heroes = service.getAll();
-    expect(heroes.length).toBeGreaterThan(0);
+    expect(heroes.length).toBe(MOCK_HEROES.length);
   });
 
   it('should return a hero by existing id', () => {
-    const hero = service.getAll()[0];
-    const result = service.getById(hero.id);
+    const result = service.getById(1);
 
-    expect(result).toEqual(hero);
+    expect(result).toEqual(MOCK_HEROES[0]);
   });
 
   it('should return undefined when id does not exist', () => {
@@ -46,14 +73,10 @@ describe('HeroService', () => {
   });
 
   it('should search hero by name', () => {
-    const hero = service.getAll()[0];
-    const term = hero.name.substring(0, 3).toLowerCase();
-    const results = service.searchByName(term);
+    const results = service.searchByName('superman');
     
-    expect(results.length).toBeGreaterThan(0);
-    results.forEach(h => {
-      expect(h.name.toLowerCase()).toContain(term);
-    });
+    expect(results.length).toBe(1);
+    expect(results[0].name).toBe('Superman');
     
   })
 
@@ -63,9 +86,8 @@ describe('HeroService', () => {
     expect(result).toEqual([]);
   })
 
-  it('should create a new hero with id and save to LocalStorage', () => {
-    const initialLen = service.getAll().length;
-    const maxId = Math.max(...service.getAll().map(h => h.id));
+  it('should create a new hero with id and save to LocalStorage', async () => {
+    const maxId = Math.max(...MOCK_HEROES.map(h => h.id));
 
     const newHero = {
       name: 'Prueba Heroe',
@@ -73,26 +95,24 @@ describe('HeroService', () => {
       powers: ['volar', 'correr'],
       description: 'Heroe creado para pruebas',
       imageUrl: '',
-    }
+    };
 
     service.create(newHero);
     jasmine.clock().tick(500);
 
     const heroes = service.getAll();
-
-    expect(heroes.length).toBe(initialLen+1);
+    expect(heroes.length).toBe(MOCK_HEROES.length + 1);
 
     const createdHero = heroes.find(h => h.name === 'Prueba Heroe');
-
     expect(createdHero).toBeDefined();
     expect(createdHero?.id).toBe(maxId + 1);
 
     const stored = JSON.parse(localStorage.getItem('heroes')!);
-    expect(stored.length).toBe(initialLen + 1);
+    expect(stored.length).toBe(MOCK_HEROES.length + 1);
   });
 
   it('should update an existing hero and save to LocalStorage', () => {
-    const hero = service.getAll()[0];
+    const hero = MOCK_HEROES[0];
 
     const updatedHero = {
       ...hero,
@@ -110,8 +130,8 @@ describe('HeroService', () => {
   });
 
   it('should delete a hero and save to LocalStorage', () => {
-    const hero = service.getAll()[0];
-    const initialLen = service.getAll().length;
+    const hero = MOCK_HEROES[0];
+    const initialLen = MOCK_HEROES.length;
 
     service.delete(hero.id);
     jasmine.clock().tick(500);
@@ -122,6 +142,4 @@ describe('HeroService', () => {
     const stored = JSON.parse(localStorage.getItem('heroes')!);
     expect(stored.find((h: SuperHero) => h.id === hero.id)).toBeUndefined();
   });
-
-
 });
