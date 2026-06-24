@@ -4,7 +4,7 @@ import { NgControl } from '@angular/forms';
 @Directive({
   selector: '[appUppercase]',
   host: {
-    '(input)': 'onInput()'
+    '(input)': 'onInput($event)',
   }
 })
 export class UppercaseDirective implements OnInit{
@@ -15,9 +15,16 @@ export class UppercaseDirective implements OnInit{
     this.changeToUppercase();
   }
 
-  onInput(){
-    this.changeToUppercase()
+  onInput(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const start = input.selectionStart;
+    const end = input.selectionEnd;
+
+    this.changeToUppercase();
+
+    input.setSelectionRange(start, end)
   }
+
 
   private changeToUppercase(): void {
     const value = this.control.control?.value || '';

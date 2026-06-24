@@ -32,6 +32,10 @@ describe('UppercaseDirective', () => {
     input = fixture.nativeElement.querySelector('input');
   });
 
+  it('should create TestComponent', () => {
+    expect(component).toBeTruthy();
+  });
+    
   it('should convert input value to uppercase', () => {
     input.value = 'superman';
     input.dispatchEvent(new Event('input'));
@@ -46,6 +50,16 @@ describe('UppercaseDirective', () => {
     newFixture.detectChanges()
 
     expect(newFixture.componentInstance.nameControl.value).toBe('ROBIN');
+  });
+
+  it('should preserve cursor position when editing in the middle', () => {
+    input.value = 'SUPERxMAN';
+    input.setSelectionRange(6, 6);
+    input.dispatchEvent(new Event('input'));
+
+    expect(component.nameControl.value).toBe('SUPERXMAN');
+    expect(input.selectionStart).toBe(6);
+    expect(input.selectionEnd).toBe(6);
   });
 
 
