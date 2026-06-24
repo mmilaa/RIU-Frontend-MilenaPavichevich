@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal } from '@angular/core';
 import { HeroService } from '../../../../core/services/hero.service';
 import { HeroCardComponent } from '../../components/hero-card/hero-card.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -32,6 +32,8 @@ export class HeroListComponent {
   pageSize = signal(this.loadPageSize());
   pageIndex = signal(0);
 
+  totalPages = computed(() => Math.ceil(this.filteredHeroes().length / this.pageSize()));
+
   filteredHeroes = computed(() => {
     const term = this.searchTerm();
     return term
@@ -46,6 +48,14 @@ export class HeroListComponent {
 
 
   constructor(){
+
+    effect(() => {
+      const total = this.totalPages();
+      if (this.pageIndex() >= total && total > 0) {
+        this.pageIndex.set(total - 1);
+      }
+    });
+    
     this.searchControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),

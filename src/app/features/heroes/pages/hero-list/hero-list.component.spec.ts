@@ -82,9 +82,12 @@ describe('HeroListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display heroes', () => {
+  it('should display paginated heroes', () => {
+    component.pageSize.set(2);
+    component.pageIndex.set(1);
+
     const heroes = component.paginatedHeroes();
-    expect(heroes.length).toBeGreaterThan(0);
+    expect(heroes).toEqual([MOCK_HEROES[2]]);
   })
 
   it('should display all heroes when search term is empty', () => {
@@ -126,6 +129,7 @@ describe('HeroListComponent', () => {
 
     expect(component.pageIndex()).toBe(2);
     expect(component.pageSize()).toBe(10);
+    expect(localStorage.getItem('heroesPageSize')).toBe('10');
   });
 
   it('should navigate to create hero page', () => {
@@ -182,6 +186,15 @@ describe('HeroListComponent', () => {
     const newComponent = newFixture.componentInstance;
 
     expect(newComponent.pageSize()).toBe(10);
+  });
+
+  it('should adjust page index when it exceeds total pages', () => {
+    component.pageSize.set(2);
+    component.pageIndex.set(5);
+
+    fixture.detectChanges();
+
+    expect(component.pageIndex()).toBe(1);
   })
 
 });
