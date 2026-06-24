@@ -10,10 +10,12 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-hero-list',
-  imports: [HeroCardComponent, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatPaginatorModule],
+  imports: [HeroCardComponent, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatPaginatorModule, ReactiveFormsModule],
   templateUrl: './hero-list.component.html',
   styleUrl: './hero-list.component.scss',
 })
@@ -25,7 +27,7 @@ export class HeroListComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly pageSizeKey = 'heroesPageSize';
 
-
+  searchControl = new FormControl('');
   searchTerm = signal('');
   pageSize = signal(this.loadPageSize());
   pageIndex = signal(0);
@@ -41,6 +43,18 @@ export class HeroListComponent {
     const start = this.pageIndex() * this.pageSize();
     return this.filteredHeroes().slice(start, start + this.pageSize());
   });
+
+
+  constructor(){
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      takeUntilDestroyed()
+    ).subscribe(value => {
+      this.searchTerm.set(value || '');
+      this.pageIndex.set(0);
+    })
+  }
 
 
   deleteHero(id: number) : void {
@@ -68,12 +82,6 @@ export class HeroListComponent {
 
   goToEdit(id: number): void {
     this.router.navigate(['/heroes/edit', id]);
-  }
-
-  onSearch(event: Event): void {
-    const value = (event.target as HTMLInputElement).value;
-    this.searchTerm.set(value);
-    this.pageIndex.set(0);
   }
 
   onPageChange(event: PageEvent): void {
