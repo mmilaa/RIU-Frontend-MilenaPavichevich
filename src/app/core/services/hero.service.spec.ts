@@ -142,4 +142,17 @@ describe('HeroService', () => {
     const stored = JSON.parse(localStorage.getItem('heroes')!);
     expect(stored.find((h: SuperHero) => h.id === hero.id)).toBeUndefined();
   });
+
+  it('should fallback to default data when localStorage is corrupted', () => {
+    localStorage.setItem('heroes', 'invalid {{');
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()]
+    });
+
+    const newService = TestBed.inject(HeroService);
+    expect(newService.getAll().length).toBeGreaterThan(0);
+  })
+
 });
