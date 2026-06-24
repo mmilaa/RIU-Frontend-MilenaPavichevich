@@ -9,5 +9,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './loading-spinner.component.scss',
 })
 export class LoadingSpinnerComponent {
-  readonly loadingService = inject(LoadingService);
+  private readonly loadingService = inject(LoadingService);
+  protected readonly loading = this.loadingService.loading;
 }
