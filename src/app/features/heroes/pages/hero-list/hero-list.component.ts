@@ -32,8 +32,6 @@ export class HeroListComponent {
   pageSize = signal(this.loadPageSize());
   pageIndex = signal(0);
 
-  totalPages = computed(() => Math.ceil(this.filteredHeroes().length / this.pageSize()));
-
   filteredHeroes = computed(() => {
     const term = this.searchTerm();
     return term
@@ -46,6 +44,7 @@ export class HeroListComponent {
     return this.filteredHeroes().slice(start, start + this.pageSize());
   });
 
+  totalPages = computed(() => Math.ceil(this.filteredHeroes().length / this.pageSize()));
 
   constructor(){
 
