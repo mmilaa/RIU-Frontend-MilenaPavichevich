@@ -106,6 +106,25 @@ describe('HeroFormComponent', () => {
 
     expect(mockHeroService.update).toHaveBeenCalled();
   });
+
+  it('should fallback description on submit when is null', () => {
+    
+    mockActivatedRoute.snapshot.paramMap = convertToParamMap({id: '1'});
+    component.ngOnInit();
+    
+    component.heroForm.patchValue({
+      name: 'Edito heroe',
+      alias: 'Editado',
+      powers: 'Vuelo, Rayos laser'
+    });
+
+    component.heroForm.get('description')?.setValue(null);
+
+    component.onSubmit();
+
+    const callArgs = mockHeroService.update.calls.mostRecent().args[0];
+    expect(callArgs.description).toBe('');
+  });
   
   it('should not submit when form is invalid', () => {
     component.onSubmit();

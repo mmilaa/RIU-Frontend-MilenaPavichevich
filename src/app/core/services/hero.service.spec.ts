@@ -14,20 +14,20 @@ const MOCK_HEROES: SuperHero[] = [
     imageUrl: 'https://example.com/superman.jpg',
   },
   {
-    id: 2,
-    name: 'Batman',
-    alias: 'Bruce Wayne',
-    powers: ['Inteligencia', 'Artes marciales', 'Tecnología avanzada', 'Sigilo'],
-    description: 'Vigilante de Gotham que lucha contra el crimen sin poderes.',
-    imageUrl: 'https://example.com/batman.jpg',
-  },
-  {
     id: 3,
     name: 'Spider-Man',
     alias: 'Peter Parker',
     powers: ['Sentido arácnido', 'Agilidad', 'Escalar paredes', 'Fuerza sobrehumana'],
     description: 'Héroe joven que protege Nueva York con habilidades de araña.',
     imageUrl: 'https://example.com/spiderman.jpg',
+  },
+  {
+    id: 2,
+    name: 'Batman',
+    alias: 'Bruce Wayne',
+    powers: ['Inteligencia', 'Artes marciales', 'Tecnología avanzada', 'Sigilo'],
+    description: 'Vigilante de Gotham que lucha contra el crimen sin poderes.',
+    imageUrl: 'https://example.com/batman.jpg',
   },
 ];
 
@@ -153,6 +153,18 @@ describe('HeroService', () => {
 
     const newService = TestBed.inject(HeroService);
     expect(newService.getAll().length).toBeGreaterThan(0);
-  })
+  });
+
+  it('should fallback to default data when localStorage is empty', () => {
+    localStorage.removeItem('heroes');
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      providers: [provideZonelessChangeDetection()]
+    });
+
+    const newService = TestBed.inject(HeroService);
+    expect(newService.getAll().length).toBeGreaterThan(0);
+  });
 
 });
