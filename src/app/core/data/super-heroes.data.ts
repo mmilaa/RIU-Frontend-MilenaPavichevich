@@ -7,7 +7,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Clark Kent',
     powers: ['Vuelo', 'Super fuerza', 'Visión láser', 'Invulnerabilidad'],
     description: 'Último hijo de Krypton y protector de la Tierra.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/791.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/644-superman.jpg',
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Bruce Wayne',
     powers: ['Inteligencia', 'Artes marciales', 'Tecnología avanzada', 'Sigilo'],
     description: 'Vigilante de Gotham que lucha contra el crimen sin poderes.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/639.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/70-batman.jpg',
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Peter Parker',
     powers: ['Sentido arácnido', 'Agilidad', 'Escalar paredes', 'Fuerza sobrehumana'],
     description: 'Héroe joven que protege Nueva York con habilidades de araña.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/133.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/620-spider-man.jpg',
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Tony Stark',
     powers: ['Armadura tecnológica', 'Vuelo', 'Inteligencia extrema', 'Armas avanzadas'],
     description: 'Genio multimillonario que combate el mal con su armadura.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/85.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/346-iron-man.jpg',
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Thor Odinson',
     powers: ['Control del rayo', 'Fuerza divina', 'Vuelo', 'Resistencia asgardiana'],
     description: 'Dios del trueno de Asgard.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/140.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/659-thor.jpg',
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Bruce Banner',
     powers: ['Fuerza ilimitada', 'Regeneración', 'Resistencia extrema'],
     description: 'Científico que se transforma en un gigante verde cuando se enfurece.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/83.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/332-hulk.jpg',
   },
   {
     id: 7,
@@ -55,7 +55,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Diana Prince',
     powers: ['Super fuerza', 'Vuelo', 'Lazo de la verdad', 'Combate'],
     description: 'Guerrera amazona y defensora de la justicia.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/807.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/720-wonder-woman.jpg',
   },
   {
     id: 8,
@@ -63,7 +63,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Barry Allen',
     powers: ['Super velocidad', 'Viaje en el tiempo', 'Reflejos extremos'],
     description: 'El hombre más rápido del mundo.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/893.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/265-flash-ii.jpg',
   },
   {
     id: 9,
@@ -71,7 +71,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Hal Jordan',
     powers: ['Anillo de poder', 'Construcciones de energía', 'Vuelo'],
     description: 'Miembro del cuerpo de Linternas Verdes.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/697.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/306-hal-jordan.jpg',
   },
   {
     id: 10,
@@ -79,16 +79,15 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Steve Rogers',
     powers: ['Super soldado', 'Estrategia', 'Escudo indestructible'],
     description: 'Símbolo de libertad y justicia.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/274.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/149-captain-america.jpg',
   },
-
   {
     id: 11,
     name: 'Black Panther',
     alias: "T'Challa",
     powers: ['Sentidos mejorados', 'Agilidad', 'Tecnología wakandiana'],
     description: 'Rey de Wakanda y protector de su nación.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/247.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/106-black-panther.jpg',
   },
   {
     id: 12,
@@ -96,7 +95,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Stephen Strange',
     powers: ['Magia', 'Manipulación del tiempo', 'Portales'],
     description: 'Hechicero supremo protector del multiverso.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/55.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/226-doctor-strange.jpg',
   },
   {
     id: 13,
@@ -104,7 +103,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Wade Wilson',
     powers: ['Regeneración', 'Combate experto', 'Inmortalidad relativa'],
     description: 'Mercenario con humor irreverente y regeneración acelerada.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/835.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/213-deadpool.jpg',
   },
   {
     id: 14,
@@ -112,7 +111,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Arthur Curry',
     powers: ['Control del mar', 'Fuerza sobrehumana', 'Comunicación marina'],
     description: 'Rey de Atlantis.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/38.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/38-aquaman.jpg',
   },
   {
     id: 15,
@@ -120,7 +119,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Oliver Queen',
     powers: ['Tiro con arco', 'Estrategia', 'Combate cuerpo a cuerpo'],
     description: 'Vigilante experto en arquería.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/298.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/298-green-arrow.jpg',
   },
   {
     id: 16,
@@ -128,7 +127,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Natasha Romanoff',
     powers: ['Espionaje', 'Artes marciales', 'Infiltración'],
     description: 'Espía experta y miembro de los Vengadores.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/107.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/107-black-widow.jpg',
   },
   {
     id: 17,
@@ -136,7 +135,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Clint Barton',
     powers: ['Precisión extrema', 'Arquería', 'Combate táctico'],
     description: 'Arquero experto de los Vengadores.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/23.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/313-hawkeye.jpg',
   },
   {
     id: 18,
@@ -144,7 +143,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Wanda Maximoff',
     powers: ['Magia del caos', 'Manipulación de la realidad'],
     description: 'Una de las hechiceras más poderosas del universo.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/444.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/579-scarlet-witch.jpg',
   },
   {
     id: 19,
@@ -152,7 +151,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Vision',
     powers: ['Intangibilidad', 'Fuerza', 'Vuelo'],
     description: 'Androide sintético con mente avanzada.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/532.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/697-vision.jpg',
   },
   {
     id: 20,
@@ -160,16 +159,15 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Scott Lang',
     powers: ['Cambio de tamaño', 'Comunicación con insectos'],
     description: 'Héroe capaz de encogerse o crecer.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/166.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/30-ant-man.jpg',
   },
-
   {
     id: 21,
     name: 'Wolverine',
     alias: 'Logan',
     powers: ['Regeneración', 'Garras de adamantium', 'Sentidos agudos'],
     description: 'Mutante con habilidades de regeneración extrema.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/161.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/717-wolverine.jpg',
   },
   {
     id: 22,
@@ -177,7 +175,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Ororo Munroe',
     powers: ['Control del clima', 'Vuelo'],
     description: 'Mutante capaz de controlar el clima.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/135.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/638-storm.jpg',
   },
   {
     id: 23,
@@ -185,7 +183,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Scott Summers',
     powers: ['Rayos ópticos', 'Liderazgo'],
     description: 'Líder de los X-Men.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/1400.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/196-cyclops.jpg',
   },
   {
     id: 24,
@@ -193,7 +191,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Jean Grey',
     powers: ['Telepatía', 'Telequinesis', 'Fénix'],
     description: 'Mutante con poder del Fénix.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/8.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/356-jean-grey.jpg',
   },
   {
     id: 25,
@@ -201,7 +199,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Dick Grayson',
     powers: ['Acrobacia', 'Combate', 'Estrategia'],
     description: 'Ex-Robin y vigilante independiente.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/695.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/491-nightwing.jpg',
   },
   {
     id: 26,
@@ -209,7 +207,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Tim Drake',
     powers: ['Combate', 'Detective', 'Agilidad'],
     description: 'Joven compañero de Batman.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/267.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/563-robin-iii.jpg',
   },
   {
     id: 27,
@@ -217,7 +215,7 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Barbara Gordon',
     powers: ['Hackeo', 'Combate', 'Inteligencia'],
     description: 'Heroína aliada de Batman.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/1111.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/63-batgirl.jpg',
   },
   {
     id: 28,
@@ -225,15 +223,15 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Kara Zor-El',
     powers: ['Vuelo', 'Super fuerza', 'Visión láser'],
     description: 'Prima de Superman.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/850.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/643-supergirl.jpg',
   },
   {
     id: 29,
     name: 'Daredevil',
     alias: 'Matt Murdock',
     powers: ['Sentidos aumentados', 'Combate', 'Radar'],
-    description: 'Vigilante ciego de Hell’s Kitchen.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/52.jpg',
+    description: 'Vigilante ciego de Hell\u2019s Kitchen.',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/201-daredevil.jpg',
   },
   {
     id: 30,
@@ -241,6 +239,6 @@ export const SUPER_HEROES: SuperHero[] = [
     alias: 'Frank Castle',
     powers: ['Armas', 'Estrategia militar', 'Resistencia'],
     description: 'Vigilante que combate el crimen con fuerza letal.',
-    imageUrl: 'https://www.superherodb.com/pictures2/portraits/10/100/1122.jpg',
+    imageUrl: 'https://akabab.github.io/superhero-api/api/images/md/530-punisher.jpg',
   },
 ];
